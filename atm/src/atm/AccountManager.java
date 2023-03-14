@@ -16,7 +16,7 @@ public class AccountManager {
 	public void addAccount(Account account) {
 		this.list.add(account);
 		
-		System.out.println("============현재 회원 정보===========");
+		System.out.println("============현재 계좌 정보===========");
 		for(int i=0;i<this.list.size();i++) {
 			System.out.println("ID: "+this.list.get(i).getId()
 							  +" ACC: "+this.list.get(i).getAccount()
@@ -25,5 +25,18 @@ public class AccountManager {
 		System.out.println("회원가입 성공");
 }
 	// Read
+//	public Account getAccount(int index) {
+//		Account account = list.get(index);
+//		
+//		Account reqObj = new Account();
+//		return reqObj;
+//	}
 	// Update
+	public void setAccount(int index, Account account) {
+		list.set(index, account);
+	}
+	
+	public void deleteAccount(int index) {
+		list.remove(index);
+	}
 }

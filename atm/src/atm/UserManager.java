@@ -18,7 +18,7 @@ public class UserManager {
 	public void addUser(User user) {
 			this.list.add(user);
 			
-			System.out.println("============현재 회원 정보===========");
+			System.out.println("============현재 계좌 정보===========");
 			for(int i=0;i<this.list.size();i++) {
 				System.out.println("ID: "+this.list.get(i).getUserId()
 								  +" NAME: "+this.list.get(i).getUserName());
@@ -27,12 +27,12 @@ public class UserManager {
 	}
 	// User 에 대한
 	// Read
-//	public User getUser(int index) {
-//		User user = this.list.get(index);
-//		
-//		User reqObj = new User();
-//		return reqObj;
-//	}
+	public User getUser(int index) {
+		User user = this.list.get(index);
+		
+		User reqObj = new User(user.getUserId(), user.getUserPassword(), user.getUserName());
+		return reqObj;
+	}
 	
 	// Update
 	
@@ -44,5 +44,6 @@ public class UserManager {
 							  +" NAME: "+this.list.get(i).getUserName());
 		}
 	}
+
 	
 }

@@ -1,6 +1,7 @@
 package atm;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Bank {
@@ -10,11 +11,13 @@ public class Bank {
 	private int endSystem;
 	private int log;
 	private Scanner scan;
+	private Random ran;
 
 	public void init() {
 		this.um = new UserManager(); // private list를 가져올 준비완료
 		this.am = new AccountManager();// private list를 가져올 준비완료
 		this.scan = new Scanner(System.in);
+		this.ran = new Random();
 		this.endSystem = -1;
 		this.log = -1;
 	}
@@ -46,14 +49,34 @@ public class Bank {
 			System.out.println("로그인 상태에서는 이용할 수 없습니다.");
 		}
 	}
-//	public void addAcc() {
-//		if(log != -1) {
-//			if(this.am.)
-//		}else{
-//			System.out.println("로그인 후 사용 가능합니다.");
-//		}
-//	}
-//		
+	public void addAcc() {
+		if(log != -1) {
+			User user = this.um.getUser(this.log);
+			// 
+			if(user.getAccountSize()< Account.LIMIT) {
+				int acc = ran.nextInt(8999) + 1000;
+				System.out.println("추가된 계좌번호 : "+ acc);
+//				System.out.println("계좌 전체 객수: "+ this.am.getAccountList().size());
+				boolean check = true;
+				for(int i=0; i<this.am.getAccountList().size();i++) {
+					if(this.am.getAccountList().get(i).getAccount() == acc) {
+						check = false;
+					}
+				}
+				if(check) {
+					Account account = new Account(this.um.getUserList().get(log).getUserId(), acc, 0 );	
+					this.am.addAccount(account);
+					user.addAccount(account);
+					System.out.println("계좌카운트: "+ user.getAccs().size());
+				}
+			}else {
+				System.out.println("계좌는 3개 까지만 생성 가능합니다.");
+			}
+		}else{
+			System.out.println("로그인 후 사용 가능합니다.");
+		}
+	}
+		
 
 	public void checkId(User user) {
 		boolean check = false;
@@ -104,22 +127,28 @@ public class Bank {
 				System.out.println("이미 로그인 상태입니다.");
 			}
 	}
+	public void logout() {
+		this.log = -1;
+		System.out.println("로그아웃!!!");
+	}
 
 	public void run() {
 		init();
 		while (endSystem == -1) {
 			System.out.println("==============" + this.bankName + "=============");
-			System.out.println("1. 회원가입 2. 탈퇴 3. 계좌신청 4. 로그인 5. 종료");
+			System.out.println("1. 회원가입 2. 탈퇴 3. 계좌신청 4. 로그인 5.로그아웃 6. 종료");
 			int select = inputNumber();
 			if (select == 1) {
 				join();
 			} else if (select == 2) {
 				delete();
 			} else if (select == 3) {
-//				addAcc();
+				addAcc();
 			} else if (select == 4) {
 				login();
-			} else if (select == 5) {
+			}else if (select == 5) {
+				logout();
+			} else if (select == 6) {
 				this.endSystem = 1;
 				System.out.println("시스템종료");
 			}

@@ -12,20 +12,26 @@ public class User {
 		this.userId = userId;
 		this.userName = userName;
 		this.userPassword = userPassword;
+		this.accs = new ArrayList<>();
 	}
 	public User(String userId,String userPassword) {
 		this.userId = userId;
 		this.userPassword = userPassword;
 	}
-	public User(ArrayList<Account>accs) {
-		this.accs = accs;
-	}
+//	public User(ArrayList<Account>accs) {
+//		this.accs = accs;
+//	}
 	
 	public ArrayList<Account> getAccs() {
 		return this.accs;
 	}
 	public  void setAccs( ArrayList<Account> accs) {
 		this.accs = accs;
+	}
+	
+	public int getAccountSize( ) {
+		System.out.println("count : " + this.accs.size());
+		return this.accs.size();
 	}
 	
 	
@@ -49,6 +55,9 @@ public class User {
 	}
 
 	
+	public void addAccount(Account acc) {
+		this.accs.add(acc);
+	}
 	
 	
 }
