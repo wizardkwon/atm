@@ -3,61 +3,56 @@ package atm;
 import java.util.ArrayList;
 
 public class User {
-	private String userId;
-	private String userName;
-	private String userPassword;
-	private ArrayList<Account>accs;
+
+	private String id, password, name;
+
+	// new 객체가 아님 -> AccountManager.list 안에 있는 인스턴스 
+	private ArrayList<Account> accs;
+
+	public User(String id, String password, String name) {
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.accs = new ArrayList<Account>();
+	}
 	
-	public User(String userId,String userName,String userPassword ) {
-		this.userId = userId;
-		this.userName = userName;
-		this.userPassword = userPassword;
-		this.accs = new ArrayList<>();
-	}
-	public User(String userId,String userPassword) {
-		this.userId = userId;
-		this.userPassword = userPassword;
-	}
-//	public User(ArrayList<Account>accs) {
-//		this.accs = accs;
-//	}
-	
-	public ArrayList<Account> getAccs() {
-		return this.accs;
-	}
-	public  void setAccs( ArrayList<Account> accs) {
+	public User(String id, String password, String name, ArrayList<Account> accs) {
+		this.id = id;
+		this.password = password;
+		this.name = name;
 		this.accs = accs;
 	}
-	
-	public int getAccountSize( ) {
-		System.out.println("count : " + this.accs.size());
-		return this.accs.size();
-	}
-	
-	
-	public String getUserId() {
-		return this.userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	public String getUserName() {
-		return this.userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getUserPassword() {
-		return this.userPassword;
-	}
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+
+	public String getId() {
+		return id;
 	}
 
-	
-	public void addAccount(Account acc) {
-		this.accs.add(acc);
+	public String getPassword() {
+		return password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getAccountSize() {
+		return this.accs.size();
+	}
+
+	public void addAccount(Account account) {
+		this.accs.add(account);
+	}
+	public void deleteAccount(int index) {
+		this.accs.remove(index);
+	}
+
+	public Account getAccount(int index) {
+		return this.accs.get(index);
 	}
 	
 	
+	public ArrayList<Account> getList() {
+		return this.accs;
+	}
+
 }
