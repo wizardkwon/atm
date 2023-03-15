@@ -65,7 +65,7 @@ public class Bank {
 	}
 
 	public void run() {
-//		fileLoad();
+		this.fm.load();
 		while (true) {
 			System.out.println("==========전체 회원 목록=========");
 			printUserInfo();
