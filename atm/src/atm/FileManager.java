@@ -77,11 +77,11 @@ public class FileManager {
 					User user = new User(id, password, name);
 					int length = dataArr.length;
 					this.um.addUser(user);
-					if(length > 3) {
-					String acc = dataArr[3];
-					int money = Integer.parseInt(dataArr[4]);
-					Account accs = new Account(id, acc, money);
-					this.am.createAccount(accs);
+					if (length > 3) {
+						String acc = dataArr[3];
+						int money = Integer.parseInt(dataArr[4]);
+						Account accs = new Account(id, acc, money);
+						this.am.createAccount(accs);
 					}
 				}
 //				this.um.addUser(user);
