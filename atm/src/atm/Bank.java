@@ -10,6 +10,7 @@ public class Bank {
 	private int log;
 	private UserManager um;
 	private AccountManager am;
+	private FileManager fm;
 
 	// Banking 관련 메소드
 	public Bank(String brandName) {
@@ -18,6 +19,7 @@ public class Bank {
 		this.scan = new Scanner(System.in);
 		this.um = new UserManager();
 		this.am = new AccountManager();
+		this.fm = new FileManager(brandName);
 	}
 
 	private void printMainMenu() {
@@ -63,6 +65,7 @@ public class Bank {
 	}
 
 	public void run() {
+//		fileLoad();
 		while (true) {
 			System.out.println("==========전체 회원 목록=========");
 			printUserInfo();
@@ -85,10 +88,12 @@ public class Bank {
 				login();
 			else if (sel == 6)
 				logout();
-			else if (sel == 0)
+			else if (sel == 0) {
+				this.fm.save();
+			System.out.println("시스템이 종료되었습니다.");
 				break;
+			}
 		}
-		System.out.println("시스템이 종료되었습니다.");
 	}
 
 	private void login() {
