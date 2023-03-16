@@ -81,7 +81,7 @@ public class FileManager {
 						String acc = dataArr[3];
 						int money = Integer.parseInt(dataArr[4]);
 						Account accs = new Account(id, acc, money);
-						this.am.createAccount(accs);
+						user.addAccount(accs);
 					}
 				}
 //				this.um.addUser(user);
